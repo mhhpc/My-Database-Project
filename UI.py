@@ -3,10 +3,41 @@ from tkinter import ttk
 
 def open_window1():
     window1 = tk.Toplevel(root)
-    window1.title("Window 1")
+    window1.title("Show Information")
     window1.configure(bg="lightblue")
-    label1 = ttk.Label(window1, text="This is Window 1", background="lightblue")
-    label1.pack(padx=200, pady=200)
+    
+    columns = ("amount", "title", "bank", "date", "delete", "edit")
+    
+    tree = ttk.Treeview(window1, columns=columns, show='headings')
+    tree.heading("amount", text="Amount")
+    tree.heading("title", text="Title")
+    tree.heading("bank", text="Bank")
+    tree.heading("date", text="Date")
+    tree.heading("delete", text="Delete")
+    tree.heading("edit", text="Edit")
+    
+    tree.column("amount", width=100, anchor='center')
+    tree.column("title", width=100, anchor='center')
+    tree.column("bank", width=100, anchor='center')
+    tree.column("date", width=100, anchor='center')
+    tree.column("delete", width=100, anchor='center')
+    tree.column("edit", width=100, anchor='center')
+    
+    # Sample data
+    data = [
+        (1000, "Groceries", "Bank 1", "2024-01-01", "Delete", "Edit"),
+        (500, "Rent", "Bank 2", "2024-02-01", "Delete", "Edit"),
+        (200, "Utilities", "Bank 3", "2024-03-01", "Delete", "Edit")
+    ]
+    
+    for item in data:
+        tree.insert('', 'end', values=item)
+    
+    tree.pack(padx=20, pady=20, fill=tk.BOTH, expand=True)
+    
+    scrollbar = ttk.Scrollbar(window1, orient=tk.VERTICAL, command=tree.yview)
+    tree.configure(yscroll=scrollbar.set)
+    scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
 def open_window2():
     window2 = tk.Toplevel(root)
@@ -26,10 +57,33 @@ def open_window2():
 
 def open_window3():
     window3 = tk.Toplevel(root)
-    window3.title("Window 3")
+    window3.title("Search")
     window3.configure(bg="lightyellow")
-    label3 = ttk.Label(window3, text="This is Window 3", background="lightyellow")
-    label3.pack(padx=200, pady=200)
+
+    label3 = ttk.Label(window3, text="Search", background="lightyellow", font=("Helvetica", 16))
+    label3.pack(padx=20, pady=20)
+
+    category_label = ttk.Label(window3, text="Select Category:", background="lightyellow", font=("Helvetica", 12))
+    category_label.pack(padx=20, pady=(10, 0))
+
+    categories = ["Category 1", "Category 2", "Category 3"]  # مثال از دسته‌بندی‌ها
+    category_combobox = ttk.Combobox(window3, values=categories, font=("Helvetica", 12))
+    category_combobox.pack(padx=20, pady=5)
+
+    start_date_label = ttk.Label(window3, text="Start Date:", background="lightyellow", font=("Helvetica", 12))
+    start_date_label.pack(padx=20, pady=(10, 0))
+
+    start_date_entry = ttk.Entry(window3, font=("Helvetica", 12))
+    start_date_entry.pack(padx=20, pady=5)
+
+    end_date_label = ttk.Label(window3, text="End Date:", background="lightyellow", font=("Helvetica", 12))
+    end_date_label.pack(padx=20, pady=(10, 0))
+
+    end_date_entry = ttk.Entry(window3, font=("Helvetica", 12))
+    end_date_entry.pack(padx=20, pady=5)
+
+    search_button = tk.Button(window3, text="Search Now", width=15, height=2, bg="lightblue", fg="black", activebackground="blue", activeforeground="white", font=("Helvetica", 12))
+    search_button.pack(padx=20, pady=20)
 
 def open_add_bank_card():
     add_bank_card_window = tk.Toplevel(root)
@@ -105,11 +159,11 @@ def open_add_category():
     category_name_entry = ttk.Entry(add_category_window, font=("Helvetica", 12))
     category_name_entry.pack(padx=20, pady=5)
 
-    type_label = ttk.Label(add_category_window, text="Type:", background="mediumseagreen", font=("Helvetica", 12))
+    type_label = ttk.Label(add_category_window, text="Category Type:", background="mediumseagreen", font=("Helvetica", 12))
     type_label.pack(padx=20, pady=(10, 0))
 
-    types = ["Receive", "Payment"]
-    type_combobox = ttk.Combobox(add_category_window, values=types, font=("Helvetica", 12))
+    category_types = ["Income", "Expense"]
+    type_combobox = ttk.Combobox(add_category_window, values=category_types, font=("Helvetica", 12))
     type_combobox.pack(padx=20, pady=5)
 
     priority_label = ttk.Label(add_category_window, text="Priority:", background="mediumseagreen", font=("Helvetica", 12))
