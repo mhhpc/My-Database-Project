@@ -115,7 +115,7 @@ def open_window3():
     category_label = ttk.Label(window3, text="Select Category:", background="lightyellow", font=("Helvetica", 12))
     category_label.pack(padx=20, pady=(10, 0))
 
-    categories = ["Category 1", "Category 2", "Category 3"]  # مثال از دسته‌بندی‌ها
+    categories = ["Category 1", "Category 2", "Category 3"]  # Category sample
     category_combobox = ttk.Combobox(window3, values=categories, font=("Helvetica", 12))
     category_combobox.pack(padx=20, pady=5)
 
@@ -174,14 +174,14 @@ def open_add_transaction():
     bank_name_label = ttk.Label(add_transaction_window, text="Select Bank:", background="lightseagreen", font=("Helvetica", 12))
     bank_name_label.pack(padx=20, pady=(10, 0))
 
-    bank_names = ["Bank 1", "Bank 2", "Bank 3"]  # مثال از نام بانک‌ها
+    bank_names = ["Bank 1", "Bank 2", "Bank 3"]  # Bank sample
     bank_name_combobox = ttk.Combobox(add_transaction_window, values=bank_names, font=("Helvetica", 12))
     bank_name_combobox.pack(padx=20, pady=5)
 
     category_label = ttk.Label(add_transaction_window, text="Select Category:", background="lightseagreen", font=("Helvetica", 12))
     category_label.pack(padx=20, pady=(10, 0))
 
-    categories = ["Category 1", "Category 2", "Category 3"]  # مثال از دسته‌بندی‌ها
+    categories = ["Category 1", "Category 2", "Category 3"]  # Category sample
     category_combobox = ttk.Combobox(add_transaction_window, values=categories, font=("Helvetica", 12))
     category_combobox.pack(padx=20, pady=5)
 
