@@ -1,6 +1,40 @@
 import tkinter as tk
 from tkinter import ttk
 
+def open_bank_info():
+    bank_info_window = tk.Toplevel(root)
+    bank_info_window.title("Bank Information")
+    bank_info_window.configure(bg="lightblue")
+    
+    columns = ("bank_name", "withdrawal", "deposit", "balance")
+    
+    tree = ttk.Treeview(bank_info_window, columns=columns, show='headings')
+    tree.heading("bank_name", text="Bank Name")
+    tree.heading("withdrawal", text="Withdraw")
+    tree.heading("deposit", text="Deposit")
+    tree.heading("balance", text="Balance")
+    
+    tree.column("bank_name", width=150, anchor='center')
+    tree.column("withdrawal", width=100, anchor='center')
+    tree.column("deposit", width=100, anchor='center')
+    tree.column("balance", width=100, anchor='center')
+    
+    # Sample data
+    data = [
+        ("Bank 1", 100, 200, 300),
+        ("Bank 2", 150, 250, 400),
+        ("Bank 3", 200, 300, 500)
+    ]
+    
+    for item in data:
+        tree.insert('', 'end', values=item)
+    
+    tree.pack(padx=20, pady=20, fill=tk.BOTH, expand=True)
+    
+    scrollbar = ttk.Scrollbar(bank_info_window, orient=tk.VERTICAL, command=tree.yview)
+    tree.configure(yscroll=scrollbar.set)
+    scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
 def open_window1():
     window1 = tk.Toplevel(root)
     window1.title("Show Information")
@@ -38,6 +72,10 @@ def open_window1():
     scrollbar = ttk.Scrollbar(window1, orient=tk.VERTICAL, command=tree.yview)
     tree.configure(yscroll=scrollbar.set)
     scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+    # Add Bank Info button
+    bank_info_button = tk.Button(window1, text="Bank Info", command=open_bank_info, width=15, height=2, bg="lightblue", fg="black", activebackground="blue", activeforeground="white", font=("Helvetica", 12))
+    bank_info_button.pack(pady=10)
 
 def open_window2():
     window2 = tk.Toplevel(root)
