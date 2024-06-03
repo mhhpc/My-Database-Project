@@ -1,6 +1,17 @@
 import tkinter as tk
 from tkinter import ttk
 
+def show_error(message):
+    error_window = tk.Toplevel(root)
+    error_window.title("Error")
+    error_window.configure(bg="red")
+    
+    label = ttk.Label(error_window, text=message, background="red", font=("Helvetica", 16))
+    label.pack(padx=20, pady=20)
+    
+    ok_button = tk.Button(error_window, text="OK!", command=error_window.destroy, width=15, height=2, bg="white", fg="black", activebackground="lightgray", activeforeground="black", font=("Helvetica", 12))
+    ok_button.pack(padx=20, pady=20)
+
 def open_bank_info():
     bank_info_window = tk.Toplevel(root)
     bank_info_window.title("Bank Information")
@@ -228,5 +239,8 @@ button2.pack(padx=40, pady=10)
 
 button3 = tk.Button(root, text="Search", command=open_window3, width=40, height=4, bg="lightyellow", fg="black", activebackground="yellow", activeforeground="white", font=("Helvetica", 16))
 button3.pack(padx=40, pady=10)
+
+# Example of triggering an error window
+# show_error("This is an error message")
 
 root.mainloop()
